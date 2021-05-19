@@ -19,8 +19,8 @@ export class UsersController {
   constructor(private usersService: UsersService) {}
 
   @Get()
-  async all(@Query('page') page = 1): Promise<User[]> {
-    return await this.usersService.paginate(page);
+  async all(@Query('page') page = 1){
+    return await this.usersService.paginate(page, ['role']);
   }
 
   @Post()
@@ -36,7 +36,7 @@ export class UsersController {
 
   @Get(':id')
   async get(@Param('id') id: number) {
-    return this.usersService.findOne({ id });
+    return this.usersService.findOne({ id }, ['role']);
   }
 
   @Put(':id')
