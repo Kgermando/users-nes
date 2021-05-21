@@ -20,7 +20,7 @@ export class Order {
     email: string;
 
     @CreateDateColumn()
-    created_ay: string;
+    created_at: string;
 
     @OneToMany(() => OrderItem, orderItem => orderItem.order)
     order_items: OrderItem[];

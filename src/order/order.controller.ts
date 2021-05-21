@@ -58,4 +58,9 @@ export class OrderController {
         });
     }
 
+    @Get('chart')
+    async chart() {
+        return this.orderService.chart();
+    }
+
 }
