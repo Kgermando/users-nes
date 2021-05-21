@@ -1,5 +1,6 @@
 import {
   Body,
+  ClassSerializerInterceptor,
   Controller,
   Delete,
   Get,
@@ -7,13 +8,18 @@ import {
   Post,
   Put,
   Query,
+  UseGuards,
+  UseInterceptors,
 } from '@nestjs/common';
 import { User } from './models/users.entity';
 import { UsersService } from './users.service';
 import * as bcrypt from 'bcrypt';
 import { UserCreateDto } from './models/user-create.dto';
 import { UserUpdateDto } from './models/user-update.dto';
+import { AuthGuard } from 'src/auth/auth.guard';
 
+@UseInterceptors(ClassSerializerInterceptor)
+// @UseGuards(AuthGuard)
 @Controller('users')
 export class UsersController {
   constructor(private usersService: UsersService) {}
